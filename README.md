@@ -64,10 +64,6 @@ bun start
 - `bun start` - Starts the production server.
 - `bun run lint` - Runs ESLint to catch syntax and logic errors.
 
-## Contributing
-
-Contributions are always welcome! Please read the contribution guidelines first.
-
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
