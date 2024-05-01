@@ -30,6 +30,7 @@
       "@p/*": ["./public/*"],
       "@c/*": ["./src/components/*"],
       "@l/*": ["./src/lib/*"],
+      "@s/*": ["./src/lib/store/*"],
       "@u/*": ["./src/lib/utils/*"]
     }
   },

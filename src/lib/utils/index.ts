@@ -1,4 +1,4 @@
-import cn from './cn';
-import delay from './delay';
+import cn from '@u/cn';
+import delay from '@u/delay';
 
 export { cn, delay };

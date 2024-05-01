@@ -1,5 +1,6 @@
-import { delay } from '@/lib/utils';
 import { NextResponse } from 'next/server';
+
+import { delay } from '@l/utils';
 
 export async function GET() {
   await delay(1000);

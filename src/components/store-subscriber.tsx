@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import counterStore from '@/lib/store/counter.store';
+import counterStore from '@s/counter.store';
 
 function StoreSubscriber() {
   const { set, increase, decrease, count } = counterStore();
@@ -16,7 +16,10 @@ function StoreSubscriber() {
         >
           Increase
         </button>
-        <button className="rounded px-2 py-1 bg-neutral-400" onClick={() => set(0)}>
+        <button
+          className="rounded px-2 py-1 bg-neutral-400"
+          onClick={() => set(0)}
+        >
           Reset
         </button>
         <button

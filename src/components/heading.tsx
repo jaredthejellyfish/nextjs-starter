@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ThemeToggle from './theme-toggle';
+import ThemeToggle from '@c/theme-toggle';
 
 function Navigation() {
   return (

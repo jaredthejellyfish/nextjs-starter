@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import Navigation from '@/components/heading';
-import QueryProvider from '@/components/query-provider';
-import { ThemeProvider } from '@/components/theme-provider';
+import Navigation from '@c/heading';
+import QueryProvider from '@c/query-provider';
+import { ThemeProvider } from '@c/theme-provider';
 
 import './globals.css';
 

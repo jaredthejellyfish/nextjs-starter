@@ -1,5 +1,5 @@
-import StoreSubscriber from '@/components/store-subscriber';
-import TanstackQuery from '@/components/tanstack-query';
+import StoreSubscriber from '@c/store-subscriber';
+import TanstackQuery from '@c/tanstack-query';
 
 export default function Home() {
   return (
