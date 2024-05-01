@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js Starter
+
+This is a robust Next.js starter template configured with essential tools to kickstart a high-performance web application. It includes state management, styling, linting, and more, all set up and ready to go.
+
+## Features
+
+- **Next.js**: The React framework for production.
+- **React Query**: Server state management for fetching, caching, and updating asynchronous data.
+- **Zustand**: A minimalistic state manager for React.
+- **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
+- **TypeScript**: Strongly typed programming language that builds on JavaScript.
+- **ESLint & Prettier**: Code quality tools to enforce a consistent code style.
+- **Lucide Icons**: Beautifully crafted open source icons.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+Ensure you have Node.js installed on your system. This project uses Node.js version 14 or above.
+
+### Installation
+
+Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/jaredthejellyfish/nextjs-starter.git
+cd nextjs-starter
+```
+
+Install the dependencies:
+
+```bash
+bun install
+```
+
+### Development
+
+To start the development server:
+
+```bash
+bun run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Building for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+To build the application for production usage:
 
-## Learn More
+```bash
+bun run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+To start the production server:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+bun start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Scripts
 
-## Deploy on Vercel
+- `bun run dev` - Runs the development server.
+- `bun run build` - Builds the application for production.
+- `bun start` - Starts the production server.
+- `bun run lint` - Runs ESLint to catch syntax and logic errors.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Contributions are always welcome! Please read the contribution guidelines first.
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## Acknowledgements
+
+- [Next.js](https://nextjs.org/)
+- [React Query](https://tanstack.com/query/v3)
+- [Zustand](https://github.com/pmndrs/zustand)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Lucide Icons](https://lucide.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+
+---
+
+Happy coding! 🚀
