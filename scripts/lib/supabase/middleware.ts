@@ -1,9 +1,10 @@
-import { type NextRequest } from 'next/server'
-import { updateSession } from '@l/supabase/middleware-auth'
+import { type NextRequest } from 'next/server';
+
+import { updateSession } from '@l/supabase/middleware-auth';
 
 export async function middleware(request: NextRequest) {
   // update user's auth session
-  return await updateSession(request)
+  return await updateSession(request);
 }
 
 export const config = {
@@ -17,4 +18,4 @@ export const config = {
      */
     '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
-}
+};

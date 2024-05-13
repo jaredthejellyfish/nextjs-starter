@@ -1,6 +1,7 @@
 import chalk from 'chalk';
 
 import {
+  addToEnvJs,
   appendToEnv,
   getInputFromPrompt,
   runCommand,
@@ -37,8 +38,8 @@ const addRoutes =
     'y' || false;
 
 console.log('');
-console.log('Setting up Supabase project...');
-console.log('Project ID:', projectId);
+console.log(chalk.bgGreen('Setting up Supabase project...'));
+console.log(chalk.yellow('Project ID:'), projectId);
 console.log('');
 
 await runCommand({
@@ -121,7 +122,9 @@ if (addRoutes) {
   await runCommands({
     commands: [
       'mkdir -p ./src/app/api/auth/callback',
-      'cp -r ./scripts/lib/supabase/route.ts ./src/app/api/auth/callback/',
+      'mkdir -p ./src/app/api/auth/logout',
+      'cp -r ./scripts/lib/supabase/login-route.ts ./src/app/api/auth/callback/route.ts',
+      'cp -r ./scripts/lib/supabase/logout-route.ts ./src/app/api/auth/logout/route.ts',
     ],
     onSuccess: () => console.log('# Routes added successfully'),
     onFail: () => {
@@ -133,6 +136,13 @@ if (addRoutes) {
   });
 }
 
+await addToEnvJs({
+  client: [
+    { name: 'NEXT_PUBLIC_SUPABASE_URL', value: 'z.string()' },
+    { name: 'NEXT_PUBLIC_SUPABASE_ANON_KEY', value: 'z.string()' },
+  ],
+});
+
 if (projectId.length > 4 && projectAnonKey.length > 4) {
   await appendToEnv(`
 NEXT_PUBLIC_SUPABASE_URL=https://${projectId}.supabase.co
@@ -142,23 +152,17 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=${projectAnonKey}
   console.log('');
 }
 
+await runCommand({
+  command: 'prettier . --write',
+  onSuccess: () => console.log('# Prettier ran successfully'),
+  onFail: () => {
+    console.error('! Failed to run prettier');
+  },
+  beforeStart: () => {
+    console.log('# Running prettier...');
+  },
+});
+
 console.log(chalk.green('>> Setup completed!'));
 
 console.log('\n');
-
-console.log(
-  chalk.yellow(
-    'Add the following to the client section of your env.js file (./src/env.js):\n',
-  ),
-);
-console.log(
-  chalk.blue(
-    "NEXT_PUBLIC_SUPABASE_URL: z.string().default(''),\nNEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().default(''),",
-  ),
-);
-
-console.log(
-  chalk.yellow(
-    '\nMake sure you fill the "runtimeEnv" object in the env.js file with the correct values.\n',
-  ),
-);
