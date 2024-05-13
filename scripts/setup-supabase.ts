@@ -1,6 +1,16 @@
 import { getInputFromPrompt, runCommand, runCommands } from './lib/utils';
+import appendToEnv from './lib/utils/appendToEnv';
+
+console.log('>> Setting up Supabase...\n');
 
 const projectId = await getInputFromPrompt('Enter your Supabase project ref');
+
+const projectAnonKey = await getInputFromPrompt('Enter your Supabase anon key');
+
+const dbPassword =
+  (await getInputFromPrompt(
+    'Enter your Supabase db password or leave empty',
+  )) || '';
 
 const installPackages =
   (await getInputFromPrompt('Install Supabase packages? (y/n)')) === 'y' ||
@@ -23,15 +33,26 @@ console.log('Setting up Supabase project...');
 console.log('Project ID:', projectId);
 console.log('');
 
+await runCommand({
+  command: `supabase init --with-intellij-settings=false --with-vscode-settings=false `,
+  onSuccess: () => console.log('# Supabase project initialized successfully'),
+  onFail: () => {
+    console.error('! Failed to initialize Supabase project');
+  },
+  beforeStart: () => {
+    console.log('# Initializing Supabase project...');
+  },
+});
+
 if (projectId && projectId.length > 4) {
   await runCommand({
-    command: `supabase init --project-ref ${projectId}`,
-    onSuccess: () => console.log('# Supabase project initialized successfully'),
+    command: `./scripts/lib/supabase/link.exp ${projectId} ${dbPassword}`,
+    onSuccess: () => console.log('# Supabase project link successfully'),
     onFail: () => {
-      console.error('! Failed to initialize Supabase project');
+      console.error('! Failed to link Supabase project');
     },
     beforeStart: () => {
-      console.log('# Initializing Supabase project...');
+      console.log('# Linking Supabase project...');
     },
   });
 }
@@ -103,3 +124,26 @@ if (addRoutes) {
     },
   });
 }
+
+if (projectId.length > 4 && projectAnonKey.length > 4) {
+  await appendToEnv(`
+NEXT_PUBLIC_SUPABASE_URL=https://${projectId}.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=${projectAnonKey}
+`);
+  console.log('# Supabase env variables added to .env file');
+  console.log('');
+}
+
+console.log('>> Setup completed!');
+
+console.log('\n');
+
+console.log('Add the following to the client section of your env.js file:\n');
+console.log(
+  "NEXT_PUBLIC_SUPABASE_URL: z.string().default(''),\nNEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().default(''),",
+);
+
+console.log(
+  '\nMake sure you fill the "runtimeEnv" object in the env.js file with the correct values.\n',
+);
+

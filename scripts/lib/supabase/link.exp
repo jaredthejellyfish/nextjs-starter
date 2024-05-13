@@ -1,0 +1,36 @@
+#!/usr/bin/expect
+
+# Check if at least the project reference is provided as an argument
+if { $argc < 1 } {
+    puts "Usage: $argv0 project-ref [db-password]"
+    exit 1
+}
+
+# Get the project reference from the command line argument
+set project_ref [lindex $argv 0]
+
+# Check if a password is provided
+if { $argc > 1 } {
+    set db_password [lindex $argv 1]
+} else {
+    set db_password "\r"
+}
+
+# Set timeout to prevent hanging
+set timeout 20
+
+# Start the supabase command with the project reference
+spawn supabase link --debug --project-ref $project_ref
+
+# Wait for the password prompt
+expect {
+    "Enter your database password (or leave blank to skip):" {
+        # Send the db_password or a newline to skip
+        send "$db_password\r"
+        expect eof
+    }
+    timeout {
+        puts "Timeout or no password prompt detected"
+        exit 2
+    }
+}
