@@ -5,6 +5,7 @@ This is a robust Next.js starter template configured with essential tools to kic
 ## Features
 
 - **Next.js**: The React framework for production.
+- **Shadcn/ui**: A collection of accessible, reusable, and customizable components.
 - **React Query**: Server state management for fetching, caching, and updating asynchronous data.
 - **Zustand**: A minimalistic state manager for React.
 - **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
@@ -76,6 +77,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Lucide Icons](https://lucide.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
+- [ESLint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+- [Shadcn/ui](https://ui.shadcn.com/docs)
 
 ---
 
