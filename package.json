@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "bootstrap:supabase": "bun run scripts/setup-supabase.ts",
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",

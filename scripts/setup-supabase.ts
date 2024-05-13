@@ -1,5 +1,9 @@
-import { getInputFromPrompt, runCommand, runCommands } from './lib/utils';
-import appendToEnv from './lib/utils/appendToEnv';
+import {
+  appendToEnv,
+  getInputFromPrompt,
+  runCommand,
+  runCommands,
+} from './lib/utils';
 
 console.log('>> Setting up Supabase...\n');
 
@@ -11,6 +15,8 @@ const dbPassword =
   (await getInputFromPrompt(
     'Enter your Supabase db password or leave empty',
   )) || '';
+
+console.log('');
 
 const installPackages =
   (await getInputFromPrompt('Install Supabase packages? (y/n)')) === 'y' ||
@@ -146,4 +152,3 @@ console.log(
 console.log(
   '\nMake sure you fill the "runtimeEnv" object in the env.js file with the correct values.\n',
 );
-
