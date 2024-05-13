@@ -1,3 +1,5 @@
+import chalk from 'chalk';
+
 import {
   appendToEnv,
   getInputFromPrompt,
@@ -5,7 +7,7 @@ import {
   runCommands,
 } from './lib/utils';
 
-console.log('>> Setting up Supabase...\n');
+console.log(chalk.green('>> Setting up Supabase...\n'));
 
 const projectId = await getInputFromPrompt('Enter your Supabase project ref');
 
@@ -140,15 +142,23 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=${projectAnonKey}
   console.log('');
 }
 
-console.log('>> Setup completed!');
+console.log(chalk.green('>> Setup completed!'));
 
 console.log('\n');
 
-console.log('Add the following to the client section of your env.js file:\n');
 console.log(
-  "NEXT_PUBLIC_SUPABASE_URL: z.string().default(''),\nNEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().default(''),",
+  chalk.yellow(
+    'Add the following to the client section of your env.js file (./src/env.js):\n',
+  ),
+);
+console.log(
+  chalk.blue(
+    "NEXT_PUBLIC_SUPABASE_URL: z.string().default(''),\nNEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().default(''),",
+  ),
 );
 
 console.log(
-  '\nMake sure you fill the "runtimeEnv" object in the env.js file with the correct values.\n',
+  chalk.yellow(
+    '\nMake sure you fill the "runtimeEnv" object in the env.js file with the correct values.\n',
+  ),
 );
