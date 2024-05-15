@@ -123,8 +123,13 @@ if (addRoutes) {
     commands: [
       'mkdir -p ./src/app/api/auth/callback',
       'mkdir -p ./src/app/api/auth/logout',
-      'cp -r ./scripts/lib/supabase/login-route.ts ./src/app/api/auth/callback/route.ts',
+      'mkdir -p ./src/app/auth/login',
+      'mkdir -p ./src/app/auth/error',
+      'cp -r ./scripts/lib/supabase/login-callback-route.ts ./src/app/api/auth/callback/route.ts',
       'cp -r ./scripts/lib/supabase/logout-route.ts ./src/app/api/auth/logout/route.ts',
+      'cp -r ./scripts/lib/supabase/login-page.tsx ./src/app/auth/login/page.tsx',
+      'cp -r ./scripts/lib/supabase/login-actions.ts ./src/app/auth/login/actions.ts',
+      'cp -r ./scripts/lib/supabase/auth-error-page.tsx ./src/app/auth/error/page.tsx',
     ],
     onSuccess: () => console.log('# Routes added successfully'),
     onFail: () => {
